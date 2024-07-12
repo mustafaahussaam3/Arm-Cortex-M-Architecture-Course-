@@ -1,0 +1,16 @@
+
+/*
+ * Exercise 1
+ *
+ * Eng Mohammed Tarek Course
+ *
+ * Advanced Embedded System
+ *
+ * Author: Mustafa Hussam Eldin
+ */
+
+
+int main(void)
+{
+	return 0;
+}

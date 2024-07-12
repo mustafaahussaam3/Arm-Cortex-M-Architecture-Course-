@@ -23,4 +23,25 @@ void Enable_Unprivileged(void)
 - you will got a Fault Exception because of trying to reach a processor peripheral in unprivileged(user mode).
 - Now, How can we go back to privileged mode ? we will answer this in exercise 2.
 
-## Exercise 2 
+## ![Exercise 2](<SVC_Exercise 2/main.c>) 
+
+### How to switch back to privileged Mode:
+Now, the challenge is to switch back to privileged Mode through Software Interrupt or In Cortex-M It's call SVC (Supervisor Call), the processor will be switched back to privileged mode inside the handler and then we can adding the instructions to Reset bit 0 in the Control Regiter 
+```bash 
+void SVC_Handler (void)
+{
+    __asm(" MOV r0, #0 ");
+    __asm(" MSR CONTROL, r0");
+}
+```
+- also we need to add this macro to call SVC in the unprivileged mode, triggering the processor to call the SVC_Handler 
+```
+#define Trigger_SVC_Exception   __asm(" SVC #0 ")
+```
+- we will call this exception before calling the SysTick, then the processor will switching back to the privileged mode and the Hard Fault will stop.
+
+- Now need to use the SVC parameter #0 to select different SVC Functions
+- this parameter is 8-bits that it can make 256 different SVC Call.
+
+## ![Exercise 3](<SVC_Exercise 3/main.c>)
+### Selecting Different SVC Functions

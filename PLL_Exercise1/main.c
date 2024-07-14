@@ -34,6 +34,7 @@
 #define OSCSRC2_MASK                  0xFFFFFF8F
 #define OSCSRC2_BIT                   4
 #define OSCSRC2_VALUE                 0x0
+
 void Leds_Init(void)
 {
     GPIO_PORTF_AMSEL_REG    &= 0xF1;
@@ -60,16 +61,16 @@ void SysTick_Init(void)
 
 void PLL_Init(void)
 {
-    SET_BIT(SYSCTL_RCC2_REG, USERCC2);                                           /*Set USERCC2 in RCC2 Register to have Pll options */
-    SET_BIT(SYSCTL_RCC2_REG, BYPASS2);                                           /*Close the PLL until it ready by Set BYPASS2 that will allow OSC to pass to the system*/
-    SYSCTL_RCC_REG = (SYSCTL_RCC_REG & XTAL_MASK) | (XTAL_FREQ << XTAL_BIT);     /*Configure XTAL with main osc frequency in RCC by 0x15(16MHz)*/
-                                                                                 /*Configure OSCSRC2 to the main Oscillator*/
-    CLEAR_BIT(SYSCTL_RCC2_REG,PWRDN2);                                           /*Clear PWRDN2 in RCC2 to activate PLL*/
-    SET_BIT(SYSCTL_RCC_REG, USESYSDIV);                                          /* Set USESYSDIV to Activate DIV400 when both USERCC2 & USESYSDIV are enabled*/
-    SET_BIT(SYSCTL_RCC2_REG, DIV400);                                            /*Configure Frequency through DIV400 (set: 400, Clear: 200) */
-    SYSCTL_RCC2_REG = (SYSCTL_RCC2_REG & SYSDIV2_MASK) | (SYSDIV2_N << SYSDIV2_BIT);  /* Configure System Divison */
-    while (BIT_IS_CLEAR(SYSCTL_RIS_REG, PLLRIS));                                     /*Wait for PLL to be ready*/
-    CLEAR_BIT(SYSCTL_RCC2_REG, BYPASS2);                                              /*Clear BYPASS2 to be used as System clk on 80MHz*/
+    SET_BIT(SYSCTL_RCC2_REG, USERCC2);                                                    /*Set USERCC2 in RCC2 Register to have Pll options */
+    SET_BIT(SYSCTL_RCC2_REG, BYPASS2);                                                    /*Close the PLL until it ready by Set BYPASS2 that will allow OSC to pass to the system*/
+    SYSCTL_RCC_REG = (SYSCTL_RCC_REG & XTAL_MASK) | (XTAL_FREQ << XTAL_BIT);              /*Configure XTAL with main osc frequency in RCC by 0x15(16MHz)*/
+    SYSCTL_RCC2_REG = (SYSCTL_RCC2_REG & OSCSRC2_MASK) | (OSCSRC2_VALUE << OSCSRC2_BIT);  /*Configure OSCSRC2 to the main Oscillator*/
+    CLEAR_BIT(SYSCTL_RCC2_REG,PWRDN2);                                                    /*Clear PWRDN2 in RCC2 to activate PLL*/
+    SET_BIT(SYSCTL_RCC_REG, USESYSDIV);                                                   /* Set USESYSDIV to Activate DIV400 when both USERCC2 & USESYSDIV are enabled*/
+    SET_BIT(SYSCTL_RCC2_REG, DIV400);                                                     /*Configure Frequency through DIV400 (set: 400, Clear: 200) */
+    SYSCTL_RCC2_REG = (SYSCTL_RCC2_REG & SYSDIV2_MASK) | (SYSDIV2_N << SYSDIV2_BIT);      /* Configure System Divison */
+    while (BIT_IS_CLEAR(SYSCTL_RIS_REG, PLLRIS));                                         /*Wait for PLL to be ready*/
+    CLEAR_BIT(SYSCTL_RCC2_REG, BYPASS2);                                                  /*Clear BYPASS2 to be used as System clk on 80MHz*/
 }
 
 int main(void)

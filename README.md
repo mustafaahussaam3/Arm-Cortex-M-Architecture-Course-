@@ -31,13 +31,13 @@ SET_BIT(SYSCTL_RCC2_REG, BYPASS2);
 SYSCTL_RCC_REG = (SYSCTL_RCC_REG & XTAL_MASK) | (XTAL_FREQ << XTAL_BIT);
 ```
 4. Configure OSCSRC2 to the main Oscillator.
- ![image](<Images/OSCRC2 Selection.PNG>)
 ```bash 
 #define OSCSRC2_MASK                  0xFFFFFF8F
 #define OSCSRC2_BIT                   4
 #define OSCSRC2_VALUE                 0x0
 SYSCTL_RCC2_REG = (SYSCTL_RCC2_REG & OSCSRC2_MASK) | (OSCSRC2_VALUE << OSCSRC2_BIT); 
 ```
+ ![image](<Images/OSCRC2 Selection.PNG>)
 5. Clear PWRDN2 in RCC2 to activate PLL.
 ```bash 
 #define PWRDN2                        13

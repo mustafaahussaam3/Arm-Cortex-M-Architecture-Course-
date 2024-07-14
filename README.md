@@ -7,7 +7,7 @@ Arm Cortex-M Architecture Course is part 1 of Eng Muhammed Tarek Advanced Embedd
 - it derived from Internal or Main 16MHz oscillator.
 - PLL get up to 400 MHz but our TivaC can only gives 80MHz maximum frequency.
 - to program PLL we need these 3 registers:
-1. SYSCTL_RCC2_REG ![image](<Images/Run-Mode Clock Configuration 2 (System Control Module)>)
+1. SYSCTL_RCC2_REG ![image](<Images/Run-Mode Clock Configuration 2 (System Control Module).PNG>)
 2. SYSCTL_RCC1_REG
 3. SYSCTL_RIS_REG
 - Steps to program PLL: 

@@ -2,24 +2,71 @@
 Arm Cortex-M Architecture Course is part 1 of Eng Muhammed Tarek Advanced Embedded System Diploma that Covers Arm Cortex Processor, Autosar and RTOS 
 # PLL
 ## ![Exercise 1](<PLL_Exercise1/main.c>)
+We need to operate the SysTick Timer with 80Mhz
 ### How to Program PLL
 - Phase-Lock-Loop(PLL) regsters are part from the System Control Module, it can be used to speed up or slow down the processor clock. Choice of Frequency is a tradeoff between software execution speed and electrical power(and heat). 
 - it derived from Internal or Main 16MHz oscillator.
 - PLL get up to 400 MHz but our TivaC can only gives 80MHz maximum frequency.
 - to program PLL we need these 3 registers:
 1. SYSCTL_RCC2_REG ![image](<Images/Run-Mode Clock Configuration 2 (System Control Module).PNG>)
-2. SYSCTL_RCC1_REG
-3. SYSCTL_RIS_REG
+2. SYSCTL_RCC1_REG ![image](<Images/Run-Mode Clock Configuration (System Control Module).PNG>)
+3. SYSCTL_RIS_REG  ![image](<Images/Raw Interrupt Status Register (System Control Module).PNG>)
 - Steps to program PLL: 
-1. Set USERCC2 in RCC2 Register to have Pll options like 16MHz.
+1. Set USERCC2 in RCC2 Register to have PLL Options.
+```bash 
+#define USERCC2                       31
+ SET_BIT(SYSCTL_RCC2_REG, USERCC2);   
+ ```
 2. Close the PLL until it ready by Set BYPASS2 that will allow OSC to pass to the system.
-3. Configure XTAL with main osc frequency in RCC by 0x15(16MHz).
-4. Clear PWRDN2 in RCC2 to activate PLL.
-5. Set USESYSDIV to Activate DIV400 when both USERCC2 & USESYSDIV are enabled.
-6. Configure Frequency through DIV400 (set: 400, Clear: 200).
-7. Configure System Divison.
-8. Wait for PLL to be ready.
-9. Clear BYPASS2 to be used as System clk on 80MHz
+```bash 
+#define BYPASS2                       11
+SET_BIT(SYSCTL_RCC2_REG, BYPASS2);
+```
+3. Configure XTAL with main OSC frequency in RCC by 0x15(16MHz). ![image](<Images/XTAL Frequencies.PNG>)
+```bash 
+#define XTAL_FREQ                     0x15  /*16MHz*/
+#define XTAL_BIT                      6
+#define XTAL_MASK                     0xFFFFF83F
+SYSCTL_RCC_REG = (SYSCTL_RCC_REG & XTAL_MASK) | (XTAL_FREQ << XTAL_BIT);
+```
+4. Configure OSCSRC2 to the main Oscillator ![image](<Images/OSCRC2 Selection.PNG>)
+```bash 
+#define OSCSRC2_MASK                  0xFFFFFF8F
+#define OSCSRC2_BIT                   4
+#define OSCSRC2_VALUE                 0x0
+SYSCTL_RCC2_REG = (SYSCTL_RCC2_REG & OSCSRC2_MASK) | (OSCSRC2_VALUE << OSCSRC2_BIT); 
+```
+5. Clear PWRDN2 in RCC2 to activate PLL.
+```bash 
+#define PWRDN2                        13
+ CLEAR_BIT(SYSCTL_RCC2_REG,PWRDN2);
+```
+6. Set USESYSDIV to Activate DIV400 when both USERCC2 & USESYSDIV are enabled.
+```bash 
+#define USESYSDIV                     22
+SET_BIT(SYSCTL_RCC_REG, USESYSDIV);
+```
+7. Configure Frequency through DIV400 (set: 400, Clear: 200).
+```bash 
+#define DIV400                        30
+ SET_BIT(SYSCTL_RCC2_REG, DIV400); 
+```
+8. Configure System Divison.
+```bash 
+#define SYSDIV2_MASK                  0xD03FFFFF
+#define SYSDIV2_BIT                   22
+#define SYSDIV2_N                     0x4    /*400/80 = 5 So, N = 4 */
+SYSCTL_RCC2_REG = (SYSCTL_RCC2_REG & SYSDIV2_MASK) | (SYSDIV2_N << SYSDIV2_BIT); 
+```
+9. Wait for PLL to be ready.
+```bash 
+#define PLLRIS                        6
+while (BIT_IS_CLEAR(SYSCTL_RIS_REG, PLLRIS));        
+```
+10. Clear BYPASS2 to be used as System clk on 80MHz
+```bash 
+CLEAR_BIT(SYSCTL_RCC2_REG, BYPASS2);  
+```
 
 
 

@@ -4,8 +4,8 @@ Arm Cortex-M Architecture Course is part 1 of Eng Muhammed Tarek Advanced Embedd
 ## ![Exercise 1](<PLL_Exercise1/main.c>)
 We need to operate the SysTick Timer with 80Mhz
 ### How to Program PLL
-- Phase-Lock-Loop(PLL) regsters are part from the System Control Module, it can be used to speed up or slow down the processor clock. Choice of Frequency is a tradeoff between software execution speed and electrical power(and heat). 
-- it derived from Internal or Main 16MHz oscillator.
+- Phase-Lock-Loop(PLL) registers are part from the System Control Module, it can be used to speed up or slow down the processor clock. Choice of Frequency is a tradeoff between software execution speed and electrical power(and heat). 
+- It derived from Internal or Main 16MHz oscillator.
 - PLL get up to 400 MHz but our TivaC can only gives 80MHz maximum frequency.
 - to program PLL we need these 3 registers:
 1. SYSCTL_RCC2_REG ![image](<Images/Run-Mode Clock Configuration 2 (System Control Module).PNG>)
@@ -22,14 +22,16 @@ We need to operate the SysTick Timer with 80Mhz
 #define BYPASS2                       11
 SET_BIT(SYSCTL_RCC2_REG, BYPASS2);
 ```
-3. Configure XTAL with main OSC frequency in RCC by 0x15(16MHz). ![image](<Images/XTAL Frequencies.PNG>)
+3. Configure XTAL with main OSC frequency in RCC by 0x15(16MHz).
+ ![image](<Images/XTAL Frequencies.PNG>)
 ```bash 
 #define XTAL_FREQ                     0x15  /*16MHz*/
 #define XTAL_BIT                      6
 #define XTAL_MASK                     0xFFFFF83F
 SYSCTL_RCC_REG = (SYSCTL_RCC_REG & XTAL_MASK) | (XTAL_FREQ << XTAL_BIT);
 ```
-4. Configure OSCSRC2 to the main Oscillator ![image](<Images/OSCRC2 Selection.PNG>)
+4. Configure OSCSRC2 to the main Oscillator.
+ ![image](<Images/OSCRC2 Selection.PNG>)
 ```bash 
 #define OSCSRC2_MASK                  0xFFFFFF8F
 #define OSCSRC2_BIT                   4

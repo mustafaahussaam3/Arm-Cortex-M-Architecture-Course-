@@ -1,5 +1,28 @@
 # Arm-Cortex-M-Architecture-Course-
 Arm Cortex-M Architecture Course is part 1 of Eng Muhammed Tarek Advanced Embedded System Diploma that Covers Arm Cortex Processor, Autosar and RTOS 
+# PLL
+## ![Exercise 1](<PLL_Exercise1/main.c>)
+### How to Program PLL
+- Phase-Lock-Loop(PLL) regsters are part from the System Control Module, it can be used to speed up or slow down the processor clock. Choice of Frequency is a tradeoff between software execution speed and electrical power(and heat). 
+- it derived from Internal or Main 16MHz oscillator.
+- PLL get up to 400 MHz but our TivaC can only gives 80MHz maximum frequency.
+- to program PLL we need these 3 registers:
+1. SYSCTL_RCC2_REG ![image](<Images/Run-Mode Clock Configuration 2 (System Control Module)>)
+2. SYSCTL_RCC1_REG
+3. SYSCTL_RIS_REG
+- Steps to program PLL: 
+1. Set USERCC2 in RCC2 Register to have Pll options like 16MHz.
+2. Close the PLL until it ready by Set BYPASS2 that will allow OSC to pass to the system.
+3. Configure XTAL with main osc frequency in RCC by 0x15(16MHz).
+4. Clear PWRDN2 in RCC2 to activate PLL.
+5. Set USESYSDIV to Activate DIV400 when both USERCC2 & USESYSDIV are enabled.
+6. Configure Frequency through DIV400 (set: 400, Clear: 200).
+7. Configure System Divison.
+8. Wait for PLL to be ready.
+9. Clear BYPASS2 to be used as System clk on 80MHz
+
+
+
 # SVC System Exceptions
 ## ![Exerise 1](<SVC_Exercise 1/main.c>)
 We here need to use the RGB leds in our TIVA-C LaunchPad trying to make a Fault Exeption while calling the Systick Handler in the 

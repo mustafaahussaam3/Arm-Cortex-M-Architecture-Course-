@@ -23,13 +23,14 @@ We need to operate the SysTick Timer with 80Mhz
 SET_BIT(SYSCTL_RCC2_REG, BYPASS2);
 ```
 3. Configure XTAL with main OSC frequency in RCC by 0x15(16MHz).
- ![image](<Images/XTAL Frequencies.PNG>)
 ```bash 
 #define XTAL_FREQ                     0x15  /*16MHz*/
 #define XTAL_BIT                      6
 #define XTAL_MASK                     0xFFFFF83F
 SYSCTL_RCC_REG = (SYSCTL_RCC_REG & XTAL_MASK) | (XTAL_FREQ << XTAL_BIT);
 ```
+ ![image](<Images/XTAL Frequencies.PNG>)
+
 4. Configure OSCSRC2 to the main Oscillator.
 ```bash 
 #define OSCSRC2_MASK                  0xFFFFFF8F
@@ -38,6 +39,7 @@ SYSCTL_RCC_REG = (SYSCTL_RCC_REG & XTAL_MASK) | (XTAL_FREQ << XTAL_BIT);
 SYSCTL_RCC2_REG = (SYSCTL_RCC2_REG & OSCSRC2_MASK) | (OSCSRC2_VALUE << OSCSRC2_BIT); 
 ```
  ![image](<Images/OSCRC2 Selection.PNG>)
+ 
 5. Clear PWRDN2 in RCC2 to activate PLL.
 ```bash 
 #define PWRDN2                        13

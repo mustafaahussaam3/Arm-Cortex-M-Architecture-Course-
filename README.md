@@ -39,7 +39,7 @@ SYSCTL_RCC_REG = (SYSCTL_RCC_REG & XTAL_MASK) | (XTAL_FREQ << XTAL_BIT);
 SYSCTL_RCC2_REG = (SYSCTL_RCC2_REG & OSCSRC2_MASK) | (OSCSRC2_VALUE << OSCSRC2_BIT); 
 ```
  ![image](<Images/OSCRC2 Selection.PNG>)
- 
+
 5. Clear PWRDN2 in RCC2 to activate PLL.
 ```bash 
 #define PWRDN2                        13
@@ -72,7 +72,13 @@ while (BIT_IS_CLEAR(SYSCTL_RIS_REG, PLLRIS));
 CLEAR_BIT(SYSCTL_RCC2_REG, BYPASS2);  
 ```
 
-
+## ![Exercise 2](<PLL_Exercise2/main.c>)
+We need to operate PLL on 10MHz
+- We will change in the divisor bit only
+```bash
+#define SYSDIV2_N                     0x27    /*400/10 = 40 So, N = 39 */
+SYSCTL_RCC2_REG = (SYSCTL_RCC2_REG & SYSDIV2_MASK) | (SYSDIV2_N << SYSDIV2_BIT); 
+```
 
 # SVC System Exceptions
 ## ![Exerise 1](<SVC_Exercise 1/main.c>)

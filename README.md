@@ -1,5 +1,5 @@
 # Arm-Cortex-M-Architecture-Course-
-Arm Cortex-M Architecture Course is part 1 of Eng Muhammed Tarek Advanced Embedded System Diploma that Covers Arm Cortex Processor, Autosar and RTOS 
+Arm Cortex-M Architecture Course is part 1 of Eng Mohamed Tarek Advanced Embedded System Diploma that Covers Arm Cortex Processor, Autosar and RTOS 
 # PLL
 ## ![Exercise 1](<PLL_Exercise1/main.c>)
 We need to operate the SysTick Timer with 80Mhz

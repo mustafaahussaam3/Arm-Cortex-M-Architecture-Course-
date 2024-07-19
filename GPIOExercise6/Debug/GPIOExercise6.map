@@ -1,7 +1,7 @@
 ******************************************************************************
                   TI ARM Linker PC v20.2.7                     
 ******************************************************************************
->> Linked Sun Jul 14 13:15:25 2024
+>> Linked Mon Jul 15 17:19:52 2024
 
 OUTPUT FILE NAME:   <GPIOExercise6.out>
 ENTRY POINT SYMBOL: "_c_int00_noinit_noargs"  address: 00000411

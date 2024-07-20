@@ -10623,3 +10623,6 @@ Unable to communicate with the device. Please check your connection.
 
 !ENTRY org.eclipse.cdt.core 1 0 2024-07-20 16:31:44.595
 !MESSAGE Indexed 'PVC_Exercise 1' (2 sources, 12 headers) in 0.078 sec: 170 declarations; 564 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-07-20 17:21:00.716
+!MESSAGE Indexed 'PendSV_Exercise 1' (2 sources, 12 headers) in 0.063 sec: 177 declarations; 532 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)

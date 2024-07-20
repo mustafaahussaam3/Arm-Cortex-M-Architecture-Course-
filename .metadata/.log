@@ -10609,3 +10609,6 @@ Unable to communicate with the device. Please check your connection.
 !ENTRY com.ti.ccstudio.debug 1 0 2024-07-20 16:23:08.147
 !MESSAGE DS_ERROR: CORTEX_M4_0: GEL: Encountered a problem loading file: D:\Advanced Embedded Course\Projects\Arm-Cortex-M-Architecture-Course-\SysTick_Interrupt 2\Debug\SysTick_Interrupt 2.out Could not open file
 
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-07-20 16:27:07.861
+!MESSAGE Indexed 'GPIO_Interrupt_Exercise 1' (2 sources, 12 headers) in 0.063 sec: 167 declarations; 523 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)

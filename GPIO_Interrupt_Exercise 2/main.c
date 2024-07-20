@@ -23,7 +23,7 @@
 #define BIT_IS_CLEAR(REG, BIT_NUM)    (!(REG &  (1<<BIT_NUM)))
 #define PF1_PF2_PF3                   (*((volatile uint32*)(0x40025000 + 0x038)))
 #define PF0_PF4                       (*((volatile uint32*)(0x40025000 + 0x044)))
-#define WAIT_FOR_INTERRUPT            (__asm(" WFI "))
+#define WAIT_FOR_INTERRUPT            __asm(" WFI ")
 
 #define NUMBER_OF_ITERATIONS_PER_ONE_MILI_SECOND 364
 

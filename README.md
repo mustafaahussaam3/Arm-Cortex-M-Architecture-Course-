@@ -131,12 +131,12 @@ void SVC_Handler (void)
 - it's the lowest priority in system exception.
 - it's used to make some tasks pendable due to executing higher priority tasks.
 - it has two usage:
-    1- To not make context switch while the Systick Interrupt executing over IRQ, because this will make the schedular make a context switch inside the Systick Handler and pend the IRQ which cause a Usage Fault Exception. ( we will write the context switch code inside the PendSV Handler)
-    2- To Split tasks to two rigions when the code has too much irq's which will cause a delay in important tasks. (so, we will put the time critical tasks in Systick and the remain of the task in pendSV)
+    1. To not make context switch while the Systick Interrupt executing over IRQ, because this will make the schedular make a context switch inside the Systick Handler and pend the IRQ which cause a Usage Fault Exception. ( we will write the context switch code inside the PendSV Handler)
+    2. To Split tasks to two rigions when the code has too much irq's which will cause a delay in important tasks. (so, we will put the time critical tasks in Systick and the remain of the task in pendSV)
 - To trigger PendSV we use:
-    1- INTCTRL Register to enable the interrupt that will put it under the category of the Software Interrupt.
+    1. INTCTRL Register to enable the interrupt that will put it under the category of the Software Interrupt.
     Set (Bit 28) will cause pending interrupt ![INTCTRL](<Images/Interrupt Control and State (INTCTRL).PNG>)
-    2- Adjust the priority of the exception to be the lowest priority ( 7 ). ![System Priority](<Images/System Handler Priority 3.PNG>)
+    2. Adjust the priority of the exception to be the lowest priority ( 7 ). ![System Priority](<Images/System Handler Priority 3.PNG>)
 
     
 ## Contact

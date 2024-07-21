@@ -33,7 +33,7 @@ void ResetISR(void);
 static void NmiSR(void);
 static void FaultISR(void);
 static void IntDefaultHandler(void);
-
+extern void UsageFault_Handler(void);
 //*****************************************************************************
 //
 // External declaration for the reset handler that is to be called when the
@@ -73,7 +73,7 @@ void (* const g_pfnVectors[])(void) =
     FaultISR,                               // The hard fault handler
     IntDefaultHandler,                      // The MPU fault handler
     IntDefaultHandler,                      // The bus fault handler
-    IntDefaultHandler,                      // The usage fault handler
+    UsageFault_Handler,                      // The usage fault handler
     0,                                      // Reserved
     0,                                      // Reserved
     0,                                      // Reserved

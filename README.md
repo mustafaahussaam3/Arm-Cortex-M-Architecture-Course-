@@ -195,5 +195,39 @@ Here we will trying to access reserved memory area which will cause Bus Fault in
  volatile uint32 *ptr =  (unsigned long*)0x20008000 ;
     *ptr = 20;
 ```
+## ![Exercise 4](<BusFault_Exercise 4/main.c>)
+Use same code of exercise 3 but enable the bus fault exception.
+
+# Usage Fault 
+
+it occurs due to:
+1. Undefined instrution.
+2. Unaligned memory access for load/ store multiple.
+3. Divide by zero.
+4. Switching from IRQ to task without finishing the IRQ.
+
+## ![Exercise 1](<UsageFault_Exercise 1/main.c>)
+We will use the same registers as Bus Fault Exception.
+- We will implement function that divide the domin by zero. 
+- A Hard Fault will be triggered if we Enable the ( Trap on Divide by 0 ) in Configuration and Control register. ( because arm by default gives zero if we divide bu zero ).
+- Open the trap by Enabling Div0 bit in CFGCTRL Register. 
+![](<Images/Configuration and Control Register ( CFGCTRL).PNG>)
+## ![Exercise 2](<UsageFault_Exercise 2/main.c>)
+Same as Exericse 1 but we will enable the Usage Fault Exception.
+```bash 
+void UsageFault_Init(void)
+{
+    SET_BIT(NVIC_SYSTEM_SYSHNDCTRL, 18);
+    NVIC_SYSTEM_PRI1_REG = ( NVIC_SYSTEM_PRI1_REG & 0xFF1FFFFF )
+     | (2 << 13);
+    SET_BIT(NVIC_SYSTEM_CFGCTRL, DIV0);
+}
+```
+## ![Exercise 3](<UsageFault_Exercise 3/main.c>)
+Enable the UNALIGNED Bit in CFGCTRL and make unaligned memory access.
+- It will trigger Hard Fault.
+## ![Exercise 4](<UsageFault_Exercise 4/main.c>)
+Same as Exercise 3 but initalize the Usage fault to be triggered.
+
 # Contact
 For any questions or inquiries, please contact [Mustafa Hussam Eldin](https://www.linkedin.com/in/mustafahussameldin/).

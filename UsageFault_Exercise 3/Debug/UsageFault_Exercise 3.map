@@ -1,7 +1,7 @@
 ******************************************************************************
                   TI ARM Linker PC v20.2.7                     
 ******************************************************************************
->> Linked Mon Jul 22 12:02:55 2024
+>> Linked Mon Jul 22 13:11:04 2024
 
 OUTPUT FILE NAME:   <UsageFault_Exercise 3.out>
 ENTRY POINT SYMBOL: "_c_int00_noinit_noargs"  address: 000002e9

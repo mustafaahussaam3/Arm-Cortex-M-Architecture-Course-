@@ -2749,3 +2749,70 @@ Finished building target: "UsageFault_Exercise 4.out"
 gmake[1]: 'UsageFault_Exercise 4.out' is up to date.
 
 **** Build Finished ****
+
+**** Build of configuration Debug for project UsageFault_Exercise 3 ****
+
+"C:\\ti\\ccs1271\\ccs\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'UsageFault_Exercise 3.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project UsageFault_Exercise 3 ****
+
+"C:\\ti\\ccs1271\\ccs\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'UsageFault_Exercise 3.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project UsageFault_Exercise 3 ****
+
+"C:\\ti\\ccs1271\\ccs\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'UsageFault_Exercise 3.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project UsageFault_Exercise 3 ****
+
+"C:\\ti\\ccs1271\\ccs\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'UsageFault_Exercise 3.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project UsageFault_Exercise 3 ****
+
+"C:\\ti\\ccs1271\\ccs\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'UsageFault_Exercise 3.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project UsageFault_Exercise 3 ****
+
+"C:\\ti\\ccs1271\\ccs\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'UsageFault_Exercise 3.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project UsageFault_Exercise 3 ****
+
+"C:\\ti\\ccs1271\\ccs\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+Building file: "../main.c"
+Invoking: Arm Compiler
+"C:/ti/ccs1271/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --include_path="D:/Advanced Embedded Course/Projects/Arm-Cortex-M-Architecture-Course-/UsageFault_Exercise 3" --include_path="C:/ti/ccs1271/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" --define=ccs="ccs" --define=PART_TM4C123GH6PM -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi --preproc_with_compile --preproc_dependency="main.d_raw"  "../main.c"
+"../main.c", line 55: warning #145-D: a value of type "volatile unsigned long *" cannot be used to initialize an entity of type "volatile uint8 *"
+Finished building: "../main.c"
+ 
+Building target: "UsageFault_Exercise 3.out"
+Invoking: Arm Linker
+"C:/ti/ccs1271/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --define=ccs="ccs" --define=PART_TM4C123GH6PM -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"UsageFault_Exercise 3.map" --heap_size=0 --stack_size=512 -i"C:/ti/ccs1271/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/lib" -i"C:/ti/ccs1271/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="UsageFault_Exercise 3_linkInfo.xml" --rom_model -o "UsageFault_Exercise 3.out" "./main.obj" "./tm4c123gh6pm_startup_ccs.obj" "../tm4c123gh6pm.cmd"  -llibc.a 
+<Linking>
+Finished building target: "UsageFault_Exercise 3.out"
+ 
+
+**** Build Finished ****

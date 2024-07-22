@@ -38,17 +38,35 @@ void UsageFault_Handler()
     while(1);
 }
 
-int divide(int x, int y)
-{
-    return x/y;
-}
+
 
 int main(void)
 {
-    UsageFault_Init();
-    while (1)
-    {
-        divide(9,0);
-    }
-    return 0;
+    /* Point to the SysTick Control Register Address */
+    volatile uint32 * ptr1 = (volatile unsigned long *)0xE000E010;
+
+    /* Point to the SysTick Control Register Address + 1 */
+    volatile uint8 * ptr2 = (volatile unsigned char *)0xE000E011;
+
+    /* Point to the SysTick Control Register Address + 2 */
+    volatile uint16 * ptr3 = (volatile unsigned short *)0xE000E012;
+
+    /* Point to the SysTick Control Register Address + 1 */
+    volatile uint32 * ptr4 = (volatile unsigned long *)0xE000E011;
+
+    /* Enable Interrupts, Exceptions and Faults */
+    Enable_Exceptions();
+    Enable_Faults();
+
+    /* Set the UNALIGNED bit in the CFGCTRL register to trigger exception when unaligned memory access happen */
+    NVIC_SYSTEM_CFGCTRL |= (1<<3);
+
+    *ptr1 = 10; /* Memory aligned access */
+
+    *ptr2 = 10; /* Memory aligned access */
+
+    *ptr3 = 10; /* Memory aligned access */
+
+    *ptr4 = 10; /* Memory Unaligned access, It should trigger Hard Fault as the Usage Fault is disabled */
+    while (1){}
 }

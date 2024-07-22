@@ -40,7 +40,7 @@ void PORTF_CLK (void)
     while (!(SYSCTL_PRGPIO_REG & 0x20));
 }
 
-int i = 1;
+uint32 i = 1;
 void SysTick_Handler (void)
 {
     i++;

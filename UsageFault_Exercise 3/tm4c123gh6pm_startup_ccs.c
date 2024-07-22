@@ -73,7 +73,7 @@ void (* const g_pfnVectors[])(void) =
     FaultISR,                               // The hard fault handler
     IntDefaultHandler,                      // The MPU fault handler
     IntDefaultHandler,                      // The bus fault handler
-    UsageFault_Handler,                      // The usage fault handler
+    UsageFault_Handler,                     // The usage fault handler
     0,                                      // Reserved
     0,                                      // Reserved
     0,                                      // Reserved

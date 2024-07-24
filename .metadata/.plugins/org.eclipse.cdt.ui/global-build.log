@@ -3244,3 +3244,11 @@ Finished building target: "MPU_Exercise 2.out"
 gmake[1]: 'MPU_Exercise 2.out' is up to date.
 
 **** Build Finished ****
+
+**** Build of configuration Debug for project GPIOExercise3 ****
+
+"C:\\ti\\ccs1271\\ccs\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'GPIOExercise3.out' is up to date.
+
+**** Build Finished ****

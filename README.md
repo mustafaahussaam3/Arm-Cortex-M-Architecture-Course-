@@ -3,7 +3,7 @@ Arm Cortex-M Architecture Course is part 1 of Eng [Mohamed Tarek](https://www.li
 
 # PLL
 
-## ![Exercise 1](<PLL_Exercise1/main.c>) Phase Lock Loop
+## ![Exercise 1](<3_PLL_Exercise1/main.c>) Phase Lock Loop
 
 We need to operate the SysTick Timer with 80Mhz
 
@@ -89,7 +89,7 @@ SYSCTL_RCC2_REG = (SYSCTL_RCC2_REG & SYSDIV2_MASK) | (SYSDIV2_N << SYSDIV2_BIT);
 ```
 
 # SVC System Exceptions
-## ![Exerise 1](<SVC_Exercise 1/main.c>) SV Call
+## ![Exerise 1](<6_SVC_Exercise 1/main.c>) SV Call
 
 We here need to use the RGB leds in our TIVA-C LaunchPad trying to make a Fault Exeption while calling the Systick Handler in the 
 Unpriviliged Mode. 
@@ -110,7 +110,7 @@ void Enable_Unprivileged(void)
 - You will got a Fault Exception because of trying to reach a processor peripheral in unprivileged(user mode).
 - Now, How can we go back to privileged mode ? we will answer this in exercise 2.
 
-## ![Exercise 2](<SVC_Exercise 2/main.c>) SV Call
+## ![Exercise 2](<6_SVC_Exercise 2/main.c>) SV Call
 
 ### How to switch back to privileged Mode:
 Now, the challenge is to switch back to privileged Mode through Software Interrupt or In Cortex-M It's call SVC (Supervisor Call), the processor will be switched back to privileged mode inside the handler and then we can adding the instructions to Reset bit 0 in the Control Regiter.
@@ -130,11 +130,11 @@ void SVC_Handler (void)
 - Now, we need to use the SVC parameter #0 to select different SVC Functions
 - This parameter is 8-bits that it can make 256 different SVC Call.
 
-## ![Exercise 3](<SVC_Exercise 3/main.c>)
+## ![Exercise 3](<6_SVC_Exercise 3/main.c>)
 ### Selecting Different SVC Functions
 
 # PendSV System Exception 
-## ![Exercise 1](<PendSV_Exercise 1/main.c>) PendSV
+## ![Exercise 1](<7_PendSV_Exercise 1/main.c>) PendSV
 
 - PendSV is one of the essentials Exceptions that used in OS design.
 - it's the lowest priority in system exception.
@@ -168,14 +168,14 @@ it occurs when:
 1. Accessing peripheral without enable it's clock.
 2. accessing reserved memory region.
 
-## ![Exercise 1](<BusFault_Exercise 1/main.c>) Bus Fault 
+## ![Exercise 1](<8_BusFault_Exercise 1/main.c>) Bus Fault 
 
 We will use GPIO Exercise 1 without enabling clock to trigger a Hard Fault Exception then, we will use the same code but by activating the bus fault registers to trigger bus fault instead of hard fault exceptions.
  
 - After running code we will stuck in the Fault_ISR Exception 
 ![fault](<Images/Hard Fault Exception.PNG>)
 
-## ![Exercise 2](<BusFault_Exercise 2/main.c>) Bus Fault
+## ![Exercise 2](<8_BusFault_Exercise 2/main.c>) Bus Fault
 
 Use the specified register to enable the Bus Fault and set priority exception. 
 - We need only 3 registers 
@@ -188,14 +188,14 @@ Use the specified register to enable the Bus Fault and set priority exception.
 3. After running code you will find the value of the desired register in bus fault address register. 
 ![](<Images/Fault Address Register.PNG>)
 
-## ![Exercise 3](<BusFault_Exercise 3/main.c>)
+## ![Exercise 3](<8_BusFault_Exercise 3/main.c>)
 
 Here we will trying to access reserved memory area which will cause Bus Fault in case we enable it, and it will cause hard fault by default
 ```bash
  volatile uint32 *ptr =  (unsigned long*)0x20008000 ;
     *ptr = 20;
 ```
-## ![Exercise 4](<BusFault_Exercise 4/main.c>)
+## ![Exercise 4](<8_BusFault_Exercise 4/main.c>)
 Use same code of exercise 3 but enable the bus fault exception.
 
 # Usage Fault 
@@ -206,13 +206,13 @@ it occurs due to:
 3. Divide by zero.
 4. Switching from IRQ to task without finishing the IRQ.
 
-## ![Exercise 1](<UsageFault_Exercise 1/main.c>)
+## ![Exercise 1](<9_UsageFault_Exercise 1/main.c>)
 We will use the same registers as Bus Fault Exception.
 - We will implement function that divide the domin by zero. 
 - A Hard Fault will be triggered if we Enable the ( Trap on Divide by 0 ) in Configuration and Control register. ( because arm by default gives zero if we divide bu zero ).
 - Open the trap by Enabling Div0 bit in CFGCTRL Register. 
 ![](<Images/Configuration and Control Register ( CFGCTRL).PNG>)
-## ![Exercise 2](<UsageFault_Exercise 2/main.c>)
+## ![Exercise 2](<9_UsageFault_Exercise 2/main.c>)
 Same as Exericse 1 but we will enable the Usage Fault Exception.
 ```bash 
 void UsageFault_Init(void)
@@ -223,10 +223,10 @@ void UsageFault_Init(void)
     SET_BIT(NVIC_SYSTEM_CFGCTRL, DIV0);
 }
 ```
-## ![Exercise 3](<UsageFault_Exercise 3/main.c>)
+## ![Exercise 3](<9_UsageFault_Exercise 3/main.c>)
 Enable the UNALIGNED Bit in CFGCTRL and make unaligned memory access.
 - It will trigger Hard Fault.
-## ![Exercise 4](<UsageFault_Exercise 4/main.c>)
+## ![Exercise 4](<9_UsageFault_Exercise 4/main.c>)
 Same as Exercise 3 but initalize the Usage fault to be triggered.
 
 # Contact

@@ -12,6 +12,7 @@ GEN_CMDS__FLAG :=
 ORDERED_OBJS += \
 "./main.obj" \
 "./tm4c123gh6pm_startup_ccs.obj" \
+"./uart0.obj" \
 "../tm4c123gh6pm.cmd" \
 $(GEN_CMDS__FLAG) \
 -llibc.a \
@@ -121,29 +122,29 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-91_MPU_Exercise\ 2.out 
+92_UART0_Driver\ 2.out 
 
 EXE_OUTPUTS__QUOTED += \
-"91_MPU_Exercise 2.out" 
+"92_UART0_Driver 2.out" 
 
 
 # All Target
 all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
-	@$(MAKE) --no-print-directory -Onone "91_MPU_Exercise 2.out"
+	@$(MAKE) --no-print-directory -Onone "92_UART0_Driver 2.out"
 
 # Tool invocations
-91_MPU_Exercise\ 2.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
+92_UART0_Driver\ 2.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: Arm Linker'
-	"C:/ti/ccs1271/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --define=ccs="ccs" --define=PART_TM4C123GH6PM -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"91_MPU_Exercise 2.map" --heap_size=0 --stack_size=512 -i"C:/ti/ccs1271/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/lib" -i"C:/ti/ccs1271/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="91_MPU_Exercise 2_linkInfo.xml" --rom_model -o "91_MPU_Exercise 2.out" $(ORDERED_OBJS)
+	"C:/ti/ccs1271/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --define=ccs="ccs" --define=PART_TM4C123GH6PM -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"92_UART0_Driver 2.map" --heap_size=0 --stack_size=512 -i"C:/ti/ccs1271/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/lib" -i"C:/ti/ccs1271/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="92_UART0_Driver 2_linkInfo.xml" --rom_model -o "92_UART0_Driver 2.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)
-	-$(RM) "main.obj" "tm4c123gh6pm_startup_ccs.obj" 
-	-$(RM) "main.d" "tm4c123gh6pm_startup_ccs.d" 
+	-$(RM) "main.obj" "tm4c123gh6pm_startup_ccs.obj" "uart0.obj" 
+	-$(RM) "main.d" "tm4c123gh6pm_startup_ccs.d" "uart0.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

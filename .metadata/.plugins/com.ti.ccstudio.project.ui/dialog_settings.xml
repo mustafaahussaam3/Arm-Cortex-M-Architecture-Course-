@@ -5,7 +5,7 @@
 	<section name="com.ti.ccstudio.project.ui.internal.properties.DynamicPropertiesPageManager">
 	</section>
 	<section name="com.ti.ccstudio.project.ui.internal.wizards.importexport.ProjectImportPage">
-		<item key="CCS.BROWSE_DIRS_FILTER" value="D:\Advanced Embedded Course\Projects\Arm-Cortex-M-Architecture-Course-"/>
+		<item key="CCS.BROWSE_DIRS_FILTER" value="D:\Advanced Embedded Course"/>
 		<item key="CCS.COPY_INTO_WORKSPACE" value="false"/>
 		<item key="CCS.IMPORT_REFERENCED_PROJECTS" value="false"/>
 		<item key="CCS.IMPORT_FROM_ARCHIVE" value="false"/>

@@ -102,6 +102,7 @@ void UART0_SendString(const uint8 *pData)
  * Description :
  * Receive the required string until the '#' symbol through UART from the other UART device.
  */
+
 void UART0_ReceiveString(uint8 *pData)
 {
     uint8 i = 0;
@@ -121,10 +122,10 @@ void UART0_ReceiveString(uint8 *pData)
 void UART0_SendData(const uint8 *pData, uint32 uSize)
 {
     uint8 i = 0;
-    while(BIT_IS_CLEAR(UART0_FR_REG, 7));
     for (; i <= uSize;i++)
     {
-        UART0_DR_REG = pData[i];
+        UART0_SendByte(pData[i]);
+;
     }
 }
 
@@ -137,8 +138,7 @@ void UART0_ReceiveData(uint8 *pData, uint32 uSize)
     uint8 i = 0;
         for (; i < uSize ; i++)
           {
-              while(BIT_IS_SET(UART0_FR_REG, 4));
-              pData[i] = UART0_DR_REG;
+             pData[i] = UART0_ReceiveByte();
           }
     pData[uSize] = '\0';
 }

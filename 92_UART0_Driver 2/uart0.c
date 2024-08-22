@@ -80,6 +80,7 @@ void UART0_SendByte(uint8 data)
 uint8 UART0_ReceiveByte(void)
 {
     while(BIT_IS_SET(UART0_FR_REG, 4));
+
     return UART0_DR_REG;
 }
 
@@ -89,11 +90,10 @@ uint8 UART0_ReceiveByte(void)
  */
 void UART0_SendString(const uint8 *pData)
 {
-    while(BIT_IS_CLEAR(UART0_FR_REG, 7));
     uint8 i = 0;
     while (pData[i] != '\0')
     {
-        UART0_DR_REG = pData[i];
+        UART0_SendByte(pData[i]);
         i++;
     }
 }
@@ -102,16 +102,15 @@ void UART0_SendString(const uint8 *pData)
  * Description :
  * Receive the required string until the '#' symbol through UART from the other UART device.
  */
+
 void UART0_ReceiveString(uint8 *pData)
 {
-    while(BIT_IS_SET(UART0_FR_REG, 4));
     uint8 i = 0;
-    pData[i] = UART0_DR_REG;
+    pData[i] = UART0_ReceiveByte();
     while (pData[i] != '#')
     {
-        while(BIT_IS_SET(UART0_FR_REG, 4));
         i++;
-        pData[i] = UART0_DR_REG;
+        pData[i] = UART0_ReceiveByte();
     }
     pData[i] = '\0';
 }
@@ -122,7 +121,12 @@ void UART0_ReceiveString(uint8 *pData)
  */
 void UART0_SendData(const uint8 *pData, uint32 uSize)
 {
-
+    uint8 i = 0;
+    for (; i <= uSize;i++)
+    {
+        UART0_SendByte(pData[i]);
+;
+    }
 }
 
 /*
@@ -131,4 +135,10 @@ void UART0_SendData(const uint8 *pData, uint32 uSize)
  */
 void UART0_ReceiveData(uint8 *pData, uint32 uSize)
 {
+    uint8 i = 0;
+        for (; i < uSize ; i++)
+          {
+             pData[i] = UART0_ReceiveByte();
+          }
+    pData[uSize] = '\0';
 }

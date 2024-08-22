@@ -63,7 +63,7 @@ void SysTick_Init(void)
 
 void PendSV_Init(void)
 {
-    NVIC_SYSTEM_PRI3_REG = (NVIC_SYSTEM_PRI3_REG & 0xFF1FFFFF) | (7 << 21) ; /* Set the PendSV to the highest priority */
+    NVIC_SYSTEM_PRI3_REG = (NVIC_SYSTEM_PRI3_REG & 0xFF1FFFFF) | (7 << 21) ; /* Set the PendSV to the lowest priority */
 }
 
 int count = 0;
